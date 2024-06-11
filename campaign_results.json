@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6667dae623ba16ee63f578c8"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6667dae623ba16ee63f578c8"
+  },
+  {
+    "name": "Alexis Miller",
+    "email": "alexismiller@gmail.com",
+    "status": "sent",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "David Evans",
+    "email": "davidevans@gmail.com",
+    "status": "failed",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "Emily Wright",
+    "email": "emilywright@gmail.com",
+    "status": "sent",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "sent",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "sent",
+    "campaignId": "6667ec8558cee3e7e57c3367"
+  },
+  {
+    "name": "Alexis Miller",
+    "email": "alexismiller@gmail.com",
+    "status": "sent",
+    "campaignId": "6667db20e5c66f045248ac74"
+  },
+  {
+    "name": "David Evans",
+    "email": "davidevans@gmail.com",
+    "status": "sent",
+    "campaignId": "6667db20e5c66f045248ac74"
+  },
+  {
+    "name": "Emily Wright",
+    "email": "emilywright@gmail.com",
+    "status": "sent",
+    "campaignId": "6667db20e5c66f045248ac74"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6667db20e5c66f045248ac74"
+  }
+]

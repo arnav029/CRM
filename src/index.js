@@ -1,93 +1,205 @@
 
 const express = require('express')   
 const app = express()
+// const hbs = require('hbs')  
 const port = 3000
+const path = require('path');
+const tempelatePath = path.join(__dirname, '../tempelates')
+const collection= require("./mongodb")
+const passport = require('passport');
+const session = require('express-session'); // Import express-session
+// require('../passport');
+require('dotenv').config(); // Load environment variables from .env file
+require('./passport')
+const homeRoutes = require('./home');
+const campaign1 = require('./campaign')
+const messageRouter = require('./message');
+const sendmessageRouter = require('./send_message')
+const exphbs = require('express-handlebars');
 
-
-//Middleware
 app.use(express.json());
+app.set('view engine', 'hbs')
+app.set('views', tempelatePath)
+app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: true }));
 
-const USERS = [{
-  email: "arnav@gmail.com",
-  password: "password",
-  username: "",
-  
-}];
 
+app.use(session({
+  secret: process.env.CLIENT_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure: false}
+}));
 
+function isLoggedIn(req, res, next) {
+  req.user ? next() : res.status(401)
+}
+
+const hbs = exphbs.create({
+  helpers: {
+    eq: (arg1, arg2, options) => {
+      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+    }
+  }
+});
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.get('/', (req, res) => {
-  res.send('Hey there handsome !')
+  res.render('login')
+})
+
+//  Google authentication routes
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { 
+    failureRedirect: '/auth/google/failure' ,
+
+    successRedirect: '/auth/google/success'
+  }),
+
+)
+app.get('/auth/google/success',async  (req,res)=> {
+  // res.send('Registration succesfull')
+  // req.session.userEmail = req.user.email;
+  req.session.userEmail = req.user.emails[0].value;
+  res.render("home")
+
+
+
 })
 
 
-app.post('/signup', (req, res) => {
 
-  //Add logic to decode body
-  //body should have email and password
-
-  const {email, password} = req.body
-
-  if(!email || !password) {
-    return res.status(400).send("Email and password are missing")
-
-  }
-
-  const userExists = USERS.find(user => user.email  == email);
-
-  if(userExists){
-    return res.status(409).send("User already exists")
-  }
-
-
-  USERS.push({email, password});
-
-  res.status(200).send("Successfull signup");
-
-
-
-
-  // return res.send(email);
-
-
-  //Store email and pwd in the USERS array above (only if the user with given email doesn't exist)
-  //returb back 200 status code to client
+app.get('/auth/google/failure', (req,res)=> {
+  res.send('Something went wrong')
 })
 
-app.post('/login', (req, res) => {
-    // res.send('Hello World from route 2!')
-  //Add logic to decode body
-  //body should have email and password
+
+app.get('/auth/protected',isLoggedIn, (req,res)=> {
+  res.send('Hello there')
+})
+
+
+app.use('/auth/logout', (req,res)=> {
+  req.session.destroy()
+  res.send("Logged out")
+})
+
+
+app.get('/signup', (req, res) => {
+  res.render("signup");
+});
+
+
+app.get('/login', (req, res) => {
+  // res.render("login");
+  res.render('login', { googleAuthUrl: '/auth/google' });
+});
+
+
+app.post('/signup',async (req, res) => {
+
+
   const {email, password} = req.body
+  const data = {
+    email: req.body.email,
+    password: req.body.password,
+    fname: req.body.fname,
+    lname: req.body.lname
+  }
 
 
-  const user = USERS.find(user => user.email == email &&  user.password == password);
+  const requiredFields = ['email', 'password', 'fname', 'lname']; // List of required fields
+
+  const missingFields = [];
+  for (const field of requiredFields) {
+    if (!req.body[field]) {
+      missingFields.push(field);
+    }
+  }
+
+  if (missingFields.length > 0) {
+    const errorMessage = `Missing required fields: ${missingFields.join(', ')}`;
+    return res.status(400).send(errorMessage); 
+  }
+
+  const userExists = await collection.findOne({ email }); // Check for email
+
+  if (userExists) {
+    return res.status(409).send("User already exists");
+  }
+  await collection.insertMany([data])
 
 
 
-  //Check if the user with the given email address exists in the USERS aray
-  //Also ensure that the password is the same
+  // res.status(200).send("Successfull signup");
+  res.render("home")
 
-  if(!user) {
-    return res.status(401).send("Invalid email or password")
+})
+
+app.post('/login',  async (req, res) => {
+
+  const data = {
+    email: req.body.email,
+    password: req.body.password,
+  }
+
+  const requiredFields = ['email', 'password']; 
+
+  const missingFields = [];
+  for (const field of requiredFields) {
+    if (!req.body[field]) {
+      missingFields.push(field);
+    }
+  }
+
+  if (missingFields.length > 0) {
+    const errorMessage = `Missing required fields: ${missingFields.join(', ')}`;
+    return res.status(400).send(errorMessage); 
+  }
+
+ try{
+  const check = await collection.findOne({email:req.body.email}) 
+
+  if(check.password == req.body.password) {
+    res.render("home")
 
   }
+
+  else{
+    res.send("Wrong password")
+  }
+ }
+
+ catch{
+  res.send("Wrong details")
+ }
+
 
   const token = "dummy-token"
-  //If the password is the same, return back 200 status code to the client
   res.status(200).json({message: "Login successfull", token});
 
-  //Also send back token(random string)
-  //If the password is not same, return back 401 status code to the client
 
   })
 
 
+  app.use((req, res, next) => {
+    // Get the authenticated user's email from the session
+    req.currentUserEmail = req.session.userEmail || null;
+    next();
+  });
 
+app.use('/', homeRoutes)
 
-  
+app.use('/', campaign1);
+
+app.use('/', messageRouter);
+
+app.use('/', sendmessageRouter);
   
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

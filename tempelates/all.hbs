@@ -1,0 +1,39 @@
+<!-- templates/campaigns.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+    <h1>All Campaigns</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Customers</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each campaigns}}
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{name}}</td>
+                <td>{{description}}</td>
+                <td>
+                    <ul>
+                        {{#each customers}}
+                        <li>{{this.name}} - {{this.email}}</li>
+                        {{/each}}
+                    </ul>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</body>
+</html>

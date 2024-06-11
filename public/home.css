@@ -1,0 +1,131 @@
+/* Base styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    color: #333;
+  }
+  
+  /* Container */
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+  
+  /* Header styling */
+  header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+  }
+  
+  header .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  header .logo a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  header nav {
+    float: right;
+  }
+  
+  header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header nav ul li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  header nav ul li a:hover {
+    color: #f4b400;
+  }
+  
+  /* Hero section styling */
+  .hero {
+    background: url('/public/hero-bg.jpg') no-repeat center center/cover;
+    padding: 100px 0;
+    text-align: center;
+    color: black;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .hero button {
+    background: #f4b400;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .hero button:hover {
+    background: #d99d00;
+  }
+  
+  /* Actions section styling */
+  .actions {
+    background: #fff;
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .actions h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+  
+  .actions .action-buttons button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .actions .action-buttons button:hover {
+    background: #0056b3;
+  }
+  
+
+  
+  /* Footer styling */
+  footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+  
