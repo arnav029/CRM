@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campaign Created Successfully</title>
-    <link rel="stylesheet" href="/public/message.css">
-
+  <link rel="stylesheet" href="/public/message.css">
 </head>
 <body>
-  <h1>Campaign Created Successfully</h1>
+  <header>
+    <div class="container">
+      <nav class="top-right">
+        <button onclick="window.location.href = '/logout'" class="logout-button">Logout</button>
+      </nav>
+    </div>
+  </header>
+
   <form action="/message" method="POST">
     <label for="message">Enter a Message:</label>
     <input type="text" id="message" name="message" placeholder="Enter your message here">

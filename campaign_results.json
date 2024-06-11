@@ -72,5 +72,26 @@
     "status": "sent",
     "campaignId": "66682a4366caca93c307f291",
     "userEmail": "arnav@gmail.com"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "666832868ce14e1eaf69ad62",
+    "userEmail": "pranavc@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "failed",
+    "campaignId": "666832868ce14e1eaf69ad62",
+    "userEmail": "pranavc@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "failed",
+    "campaignId": "666832868ce14e1eaf69ad62",
+    "userEmail": "pranavc@gmail.com"
   }
 ]

@@ -88,9 +88,21 @@ app.get('/auth/protected',isLoggedIn, (req,res)=> {
 
 app.use('/auth/logout', (req,res)=> {
   req.session.destroy()
-  res.send("Logged out")
+  res.clearCookie('connect.sid'); 
+  res.redirect('/login'); 
 })
 
+
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Error logging out");
+    }
+    res.clearCookie('connect.sid'); 
+    res.redirect('/login'); 
+  });
+});
 
 app.get('/signup', (req, res) => {
   res.render("signup");
@@ -161,15 +173,24 @@ app.post('/login', async (req, res) => {
   }
 
   try {
+    // Fetch the user from the database
     const user = await collection.findOne({ email });
 
-    if (user && user.password === password) {
+    if (!user) {
+      return res.status(401).send("Incorrect email or password");
+    }
+
+    // Compare the hashed password in the database with the provided password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
       req.session.userEmail = email; // Store email in session after successful login
       return res.render("home");
     } else {
       return res.status(401).send("Incorrect email or password");
     }
   } catch (error) {
+    console.error(error); // Log the error for debugging
     return res.status(500).send("Internal server error");
   }
 });
