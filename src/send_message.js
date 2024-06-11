@@ -5,10 +5,7 @@ const hbs = require('hbs')
 const port = 3000
 const path = require('path');
 const tempelatePath = path.join(__dirname, '../tempelates')
-
-
-// require('../passport');
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 
 
 app.use(express.json());
@@ -21,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 router.get('/sendmessage', async (req, res) => {
     res.render("message")
   });
-// Helper function to send the message to a customer
 
 
 module.exports = router;

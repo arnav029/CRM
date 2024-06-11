@@ -43,14 +43,15 @@ router.get('/spends-over-10000', async (req, res) => {
       const customers = await customer.find({ totalSpends: { $gt: 10000 } });   
       const customerIds = customers.map(customer => customer._id);
       const userEmail = req.currentUserEmail; // Get the authenticated user's email
-
+      if (!customers.length) {
+        return res.status(200).json({ message: 'No customers found spending over 10000 INR' });
+      }
       if (!userEmail) {
         return res.status(401).json({ error: 'Unauthorized' });
       }
       const campaign = new Campaign({ customers: customerIds, userEmail  });
       await campaign.save();
   
-      // res.status(200).json({ message: 'Campaign created successfully', campaign });
       res.render("message")
 
 
@@ -73,10 +74,13 @@ router.get('/spends-over-10000', async (req, res) => {
       const customerIds = customers.map(customer => customer._id);
       const userEmail = req.currentUserEmail; // Get the authenticated user's email
 
+      if (!customers.length) {
+        return res.status(200).json({ message: 'No customers found spending over 10000 INR and visited maximum 3 times' });
+      }
+
       const campaign = new Campaign({ customers: customerIds, userEmail });
       await campaign.save();
       
-      // res.status(200).json({ message: 'Campaign created successfully', campaign });
       res.render("message")
 
     } catch (err) {
@@ -91,7 +95,7 @@ router.get('/spends-over-10000', async (req, res) => {
       const today = new Date();
       const threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 3, 1); 
       const customers = await customer.find({
-        last_visit: {
+        lastVisit: {
           $lte: threeMonthsAgo 
         }
       });
@@ -105,7 +109,6 @@ router.get('/spends-over-10000', async (req, res) => {
       const campaign = new Campaign({ customers: customerIds, userEmail });
       await campaign.save();
     
-      // res.status(200).json({ message: 'Campaign created successfully', campaign });
       res.render("message")
   
     } catch (err) {
@@ -115,21 +118,6 @@ router.get('/spends-over-10000', async (req, res) => {
   });
   
 
-
-//   router.post('/save-campaign', (req, res) => {
-//     const campaign = req.body;
-
-//     // Load existing campaigns
-//     const campaigns = JSON.parse(fs.readFileSync(campaignsFilePath, 'utf8'));
-
-//     // Add the new campaign
-//     campaigns.push(campaign);
-
-//     // Save updated campaigns
-//     fs.writeFileSync(campaignsFilePath, JSON.stringify(campaigns, null, 2), 'utf8');
-
-//     res.status(200).json({ message: 'Campaign saved successfully' });
-// });
 
 // Retrieve all campaigns
   router.get('/all-campaigns', async (req, res) => {

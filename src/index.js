@@ -16,6 +16,8 @@ const campaign1 = require('./campaign')
 const messageRouter = require('./message');
 const sendmessageRouter = require('./send_message')
 const exphbs = require('express-handlebars');
+const bcrypt = require('bcrypt');
+
 
 app.use(express.json());
 app.set('view engine', 'hbs')
@@ -104,13 +106,8 @@ app.get('/login', (req, res) => {
 app.post('/signup',async (req, res) => {
 
 
-  const {email, password} = req.body
-  const data = {
-    email: req.body.email,
-    password: req.body.password,
-    fname: req.body.fname,
-    lname: req.body.lname
-  }
+  const { email, password, fname, lname } = req.body;
+
 
 
   const requiredFields = ['email', 'password', 'fname', 'lname']; // List of required fields
@@ -127,6 +124,17 @@ app.post('/signup',async (req, res) => {
     return res.status(400).send(errorMessage); 
   }
 
+  const saltRounds = 10; // Higher value is more secure but slower
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+
+  const data = {
+    email,
+    password: hashedPassword,
+    fname,
+    lname
+  }
+
   const userExists = await collection.findOne({ email }); // Check for email
 
   if (userExists) {
@@ -134,61 +142,41 @@ app.post('/signup',async (req, res) => {
   }
   await collection.insertMany([data])
 
-
+  req.session.userEmail = email;
 
   // res.status(200).send("Successfull signup");
   res.render("home")
 
 })
 
-app.post('/login',  async (req, res) => {
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
 
-  const data = {
-    email: req.body.email,
-    password: req.body.password,
-  }
-
-  const requiredFields = ['email', 'password']; 
-
-  const missingFields = [];
-  for (const field of requiredFields) {
-    if (!req.body[field]) {
-      missingFields.push(field);
-    }
-  }
+  const requiredFields = ['email', 'password'];
+  const missingFields = requiredFields.filter(field => !req.body[field]);
 
   if (missingFields.length > 0) {
     const errorMessage = `Missing required fields: ${missingFields.join(', ')}`;
-    return res.status(400).send(errorMessage); 
+    return res.status(400).send(errorMessage);
   }
 
- try{
-  const check = await collection.findOne({email:req.body.email}) 
+  try {
+    const user = await collection.findOne({ email });
 
-  if(check.password == req.body.password) {
-    res.render("home")
-
+    if (user && user.password === password) {
+      req.session.userEmail = email; // Store email in session after successful login
+      return res.render("home");
+    } else {
+      return res.status(401).send("Incorrect email or password");
+    }
+  } catch (error) {
+    return res.status(500).send("Internal server error");
   }
+});
 
-  else{
-    res.send("Wrong password")
-  }
- }
-
- catch{
-  res.send("Wrong details")
- }
-
-
-  const token = "dummy-token"
-  res.status(200).json({message: "Login successfull", token});
-
-
-  })
 
 
   app.use((req, res, next) => {
-    // Get the authenticated user's email from the session
     req.currentUserEmail = req.session.userEmail || null;
     next();
   });

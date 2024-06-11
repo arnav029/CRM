@@ -16,7 +16,9 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.use(express.urlencoded({ extended: true }));
 
 
-
+router.get('/home', (req,res)=> {
+    res.render("home")
+})
 router.get('/campaign', (req,res)=> {
     // res.send('This is ')
     res.render("campaign")

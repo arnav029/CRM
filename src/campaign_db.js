@@ -1,4 +1,3 @@
-// models/Campaign.js
 const mongoose = require('mongoose');
 const customer= require("./customer")
 
