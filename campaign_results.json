@@ -93,5 +93,194 @@
     "status": "failed",
     "campaignId": "666832868ce14e1eaf69ad62",
     "userEmail": "pranavc@gmail.com"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "666826d94171f275a3a39b7f",
+    "userEmail": "arnavnpatil@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "sent",
+    "campaignId": "666826d94171f275a3a39b7f",
+    "userEmail": "arnavnpatil@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "failed",
+    "campaignId": "666826d94171f275a3a39b7f",
+    "userEmail": "arnavnpatil@gmail.com"
+  },
+  {
+    "name": "Alexis Miller",
+    "email": "alexismiller@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "David Evans",
+    "email": "davidevans@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Emily Wright",
+    "email": "emilywright@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Rajesh Kumar",
+    "email": "rajesh@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "John Miller",
+    "email": "xyz@gmail.com",
+    "status": "sent",
+    "campaignId": "6669415ef3629a73c9a329a3",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "sent",
+    "campaignId": "66694196f3629a73c9a329ae",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "failed",
+    "campaignId": "66694196f3629a73c9a329ae",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Rajesh Kumar",
+    "email": "rajesh@gmail.com",
+    "status": "sent",
+    "campaignId": "66694196f3629a73c9a329ae",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "John Miller",
+    "email": "xyz@gmail.com",
+    "status": "sent",
+    "campaignId": "66694196f3629a73c9a329ae",
+    "userEmail": "arnavnpatil029@gmail.com"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "6669431bf3629a73c9a329ba",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "failed",
+    "campaignId": "6669431bf3629a73c9a329ba",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "sent",
+    "campaignId": "6669431bf3629a73c9a329ba",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Alexis Miller",
+    "email": "alexismiller@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "David Evans",
+    "email": "davidevans@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Emily Wright",
+    "email": "emilywright@gmail.com",
+    "status": "failed",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Shyam Kumar",
+    "email": "shyamkumar@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Yogesh Sharma",
+    "email": "yogesh@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Rahul Singh",
+    "email": "rahul@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Rajesh Kumar",
+    "email": "rajesh@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "John Miller",
+    "email": "xyz@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
+  },
+  {
+    "name": "Arnav Patil",
+    "email": "abc@gmail.com",
+    "status": "sent",
+    "campaignId": "66694348f3629a73c9a329c5",
+    "userEmail": "arnavpatiltest@gmail.com"
   }
 ]

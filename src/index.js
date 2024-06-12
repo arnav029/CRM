@@ -17,6 +17,7 @@ const messageRouter = require('./message');
 const sendmessageRouter = require('./send_message')
 const exphbs = require('express-handlebars');
 const bcrypt = require('bcrypt');
+const customer = require('./customer');
 
 
 app.use(express.json());
@@ -210,6 +211,19 @@ app.use('/', messageRouter);
 
 app.use('/', sendmessageRouter);
   
+
+// app.use('/', insertCustomerouter);
+
+app.post('/customers', async (req, res) => {
+  try {
+    const newCustomer = new customer(req.body);
+    const savedCustomer = await newCustomer.save();
+    res.status(201).json(savedCustomer);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

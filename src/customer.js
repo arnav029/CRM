@@ -1,4 +1,13 @@
-const mongoose = require("mongoose")
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const app = express();
+const router = express.Router();
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 mongoose.connect("mongodb://localhost:27017/mydatabase")
 .then(() => {
@@ -48,7 +57,21 @@ const customerSchema = new mongoose.Schema({
 
 
 const customer = new mongoose.model("customer", customerSchema)
-//  customer.insertMany([data])
+
+
+// router.post('/customers', async (req, res) => {
+//    try {
+//      const newCustomer = new customer(req.body);
+//      const savedCustomer = await newCustomer.save();
+//      res.status(201).json(savedCustomer);
+//    } catch (err) {
+//      res.status(400).json({ error: err.message });
+//    }
+//  });
+
+
+
+//  customer.insertMany([savedCustomer])
 
 
 module.exports = customer

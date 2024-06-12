@@ -5,7 +5,7 @@ const hbs = require('hbs')
 const path = require('path');
 const router = express.Router()
 const tempelatePath = path.join(__dirname, '../tempelates')
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 require('./passport')
 
 
