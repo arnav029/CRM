@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 if (!fs.existsSync(campaignsFilePath)) {
     fs.writeFileSync(campaignsFilePath, '[]', 'utf8');
 }
-//Connecting database
+
 mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection failed:', err));
@@ -90,6 +90,7 @@ router.get('/spends-over-10000', async (req, res) => {
   });
 
 
+  //Third case
   router.get('/not-visited-last-3-months', async (req, res) => {
     try {
       const today = new Date();
@@ -119,7 +120,6 @@ router.get('/spends-over-10000', async (req, res) => {
   
 
 
-// Retrieve all campaigns
   router.get('/all-campaigns', async (req, res) => {
     try {
         const userEmail = req.currentUserEmail;

@@ -7,9 +7,9 @@ const path = require('path');
 const tempelatePath = path.join(__dirname, '../tempelates')
 const collection= require("./mongodb")
 const passport = require('passport');
-const session = require('express-session'); // Import express-session
+const session = require('express-session'); 
 // require('../passport');
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 require('./passport')
 const homeRoutes = require('./home');
 const campaign1 = require('./campaign')
@@ -137,7 +137,7 @@ app.post('/signup',async (req, res) => {
     return res.status(400).send(errorMessage); 
   }
 
-  const saltRounds = 10; // Higher value is more secure but slower
+  const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
 
@@ -174,24 +174,23 @@ app.post('/login', async (req, res) => {
   }
 
   try {
-    // Fetch the user from the database
+
     const user = await collection.findOne({ email });
 
     if (!user) {
       return res.status(401).send("Incorrect email or password");
     }
 
-    // Compare the hashed password in the database with the provided password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
-      req.session.userEmail = email; // Store email in session after successful login
+      req.session.userEmail = email;
       return res.render("home");
     } else {
       return res.status(401).send("Incorrect email or password");
     }
   } catch (error) {
-    console.error(error); // Log the error for debugging
+    console.error(error); 
     return res.status(500).send("Internal server error");
   }
 });

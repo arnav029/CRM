@@ -11,7 +11,6 @@ handlebars.registerHelper('eq', function(value1, value2) {
   return value1 === value2;
 });
 
-// Middleware to ensure user is authenticated and email is available
 function ensureAuthenticated(req, res, next) {
   if (req.session.userEmail) {
     next();

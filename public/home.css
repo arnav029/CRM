@@ -55,7 +55,6 @@ header nav.top-right .logout-button {
 header nav.top-right .logout-button:hover {
   background: #d99d00;
 }
-/* Hero section styling */
 .hero {
   background: url('/public/hero-bg.jpg') no-repeat center center/cover;
   padding: 100px 0;
@@ -87,7 +86,6 @@ header nav.top-right .logout-button:hover {
   background: #d99d00;
 }
 
-/* Actions section styling */
 .actions {
   background: #fff;
   padding: 60px 0;
